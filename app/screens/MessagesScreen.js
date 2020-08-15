@@ -11,15 +11,14 @@ import {
 const initialMessages = [
   {
     id: 1,
-    title: "Mosh Hamedani",
-    description: "Hey! Is this item still available?",
+    title: "Abdul Katib",
+    description: "Hey, what's up?",
     image: require("../assets/image.jpg"),
   },
   {
     id: 2,
-    title: "Mosh Hamedani",
-    description:
-      "I'm interested in this item. When will you be able to post it?",
+    title: "Abdul Katib",
+    description: "Some random mesage here!!!!!",
     image: require("../assets/image.jpg"),
   },
 ];
@@ -53,6 +52,7 @@ function MessagesScreen(props) {
         refreshing={refreshing}
         onRefresh={() => {
           setMessages([
+            ...initialMessages,
             {
               id: 2,
               title: "T2",
