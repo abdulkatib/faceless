@@ -1,28 +1,72 @@
-import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Modal,
+  Button,
+  FlatList,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import defaultStyles from "../config/styles";
 import Text from "./Text";
+import Screen from "./Screen";
+import PickerItem from "./PickerItem";
+// import {  } from "react-native-gesture-handler";
 
-function Picker({ icon, placeholder, ...otherProps }) {
+function Picker({
+  icon,
+  placeholder,
+  items,
+  onSelectItem,
+  selectedItem,
+  ...otherProps
+}) {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
-    <View style={styles.container}>
-      {icon && (
-        <MaterialCommunityIcons
-          name={icon}
-          size={20}
-          color={defaultStyles.colors.medium}
-          style={styles.icon}
-        />
-      )}
-      <Text style={styles.text}>{placeholder}</Text>
-      <MaterialCommunityIcons
-        name="chevron-down"
-        size={20}
-        color={defaultStyles.colors.medium}
-      />
-    </View>
+    <>
+      <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+        <View style={styles.container}>
+          {icon && (
+            <MaterialCommunityIcons
+              name={icon}
+              size={20}
+              color={defaultStyles.colors.medium}
+              style={styles.icon}
+            />
+          )}
+          <Text style={styles.text}>
+            {selectedItem ? selectedItem : placeholder}
+          </Text>
+          <MaterialCommunityIcons
+            name="chevron-down"
+            size={20}
+            color={defaultStyles.colors.medium}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <Modal visible={modalVisible} animationType="slide">
+        <Screen>
+          <Button title="Close" onPress={() => setModalVisible(false)} />
+          <FlatList
+            data={items}
+            keyExtroctor={(item) => item.sex.toString()}
+            renderItem={({ item }) => (
+              <PickerItem
+                lable={item.sex}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem(item);
+                }}
+              />
+            )}
+          />
+        </Screen>
+      </Modal>
+    </>
   );
 }
 
