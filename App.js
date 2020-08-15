@@ -1,6 +1,19 @@
 import React from "react";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
+import Card from "./app/components/Card";
 
 export default function App() {
-  return <WelcomeScreen />;
+  return (
+    <>
+      <Card
+        title={"Abdul"}
+        subTitle={"Hi :)"}
+        image={require("./app/assets/image.jpg")}
+      />
+      <Card
+        title={"Moe"}
+        subTitle={"What's up"}
+        image={require("./app/assets/image.jpg")}
+      />
+    </>
+  );
 }
