@@ -17,7 +17,7 @@ const initialMessages = [
   },
   {
     id: 2,
-    title: "Abdul Katib",
+    title: "Moe Katib",
     description: "Some random mesage here!!!!!",
     image: require("../assets/image.jpg"),
   },
@@ -54,9 +54,15 @@ function MessagesScreen(props) {
           setMessages([
             ...initialMessages,
             {
-              id: 2,
-              title: "T2",
-              description: "D2",
+              id: 3,
+              title: "Mike",
+              description: ":)",
+              image: require("../assets/image.jpg"),
+            },
+            {
+              id: 4,
+              title: "Jone",
+              description: "hey man",
               image: require("../assets/image.jpg"),
             },
           ]);

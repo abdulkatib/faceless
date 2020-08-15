@@ -1,6 +1,6 @@
 import React from "react";
-import Chat from "./app/components/Chat";
+import MessagesScreen from "./app/screens/MessagesScreen";
 
 export default function App() {
-  return <Chat />;
+  return <MessagesScreen />;
 }
