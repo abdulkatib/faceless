@@ -1,6 +1,11 @@
 import React from "react";
-import MessagesScreen from "./app/screens/MessagesScreen";
+import Picker from "./app/components/Picker";
+import Screen from "./app/components/Screen";
 
 export default function App() {
-  return <MessagesScreen />;
+  return (
+    <Screen>
+      <Picker placeholder="Gender" icon="gender-male-female" />
+    </Screen>
+  );
 }
