@@ -1,7 +1,8 @@
 import React from "react";
-import { ImageBackground, StyleSheet, View, Image, Text } from "react-native";
+import { ImageBackground, StyleSheet, View, Image } from "react-native";
 
 import Button from "../components/Button";
+import Text from "../components/Text";
 import colors from "../config/colors";
 
 function WelcomeScreen(props) {
@@ -12,8 +13,9 @@ function WelcomeScreen(props) {
       source={require("../assets/background.jpg")}
     >
       <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-        <Text style={styles.tagline}> Say it as you feel it</Text>
+        <Image style={styles.logo} source={require("../assets/logo.png")} />
+        <Text style={styles.tagline}>faceless</Text>
+        <Text style={styles.slogan}> Say it as you feel it</Text>
       </View>
       <View style={styles.buttonsContainer}>
         <Button title="Login" />
@@ -43,10 +45,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   tagline: {
-    fontSize: 25,
+    fontSize: 50,
     fontWeight: "600",
-    paddingVertical: 20,
-    color: colors.white,
+    paddingTop: 15,
+    color: colors.primary,
+  },
+  slogan: {
+    fontSize: 20,
+    fontWeight: "600",
+    // paddingVertical: 20,
+    color: colors.primary,
   },
 });
 
