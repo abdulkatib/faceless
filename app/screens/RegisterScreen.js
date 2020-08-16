@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import CheckBox from "react-native-check-box";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
 import Text from "../components/Text";
 import Button from "../components/Button";
-
+import ErrorMessage from "../components/forms/ErrorMessage";
 import { Form, FormField, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
@@ -16,12 +16,30 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterScreen() {
-  const [isSelected, setSelection] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const CheckBoxComponent = () => {
+    return (
+      <View onClick={() => setAcceptedTerms(!acceptedTerms)}>
+        <View style={styles.checkboxContainer}>
+          <CheckBox
+            name="terms"
+            isChecked={acceptedTerms}
+            onClick={() => setAcceptedTerms(!acceptedTerms)}
+            style={styles.checkbox}
+          />
+          <Text>
+            I have read and agree to the Terms{!acceptedTerms ? "👎" : "👍"}
+          </Text>
+        </View>
+      </View>
+    );
+  };
 
   return (
     <Screen style={styles.container}>
+      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <Form
-        initialValues={{ name: "", email: "", password: "" }}
+        initialValues={{ name: "", email: "", password: "", terms: "" }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
@@ -55,27 +73,12 @@ function RegisterScreen() {
           secureTextEntry
           textContentType="password"
         />
-        <View
-          onClick={() => setSelection(!isSelected)}
-          style={styles.container}
-        >
-          <View style={styles.checkboxContainer}>
-            <CheckBox
-              name="terms"
-              isChecked={isSelected}
-              onClick={() => setSelection(!isSelected)}
-              style={styles.checkbox}
-            />
-            <Text>
-              I have read and agree to the Terms: {isSelected ? "👍" : "👎"}
-            </Text>
-          </View>
-        </View>
-        {isSelected ? (
-          <SubmitButton title="Register" />
-        ) : (
-          <Button title="Register" color="medium" />
-        )}
+        <CheckBoxComponent name="terms" />
+        <ErrorMessage
+          error="You should agree to Faceless terms"
+          visible={!acceptedTerms}
+        />
+        <SubmitButton title="Register" />
       </Form>
     </Screen>
   );
@@ -84,6 +87,20 @@ function RegisterScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  checkbox: {
+    marginRight: 10,
+  },
+  logo: {
+    width: 80,
+    height: 80,
+    alignSelf: "center",
+    marginTop: 50,
+    marginBottom: 20,
   },
 });
 
