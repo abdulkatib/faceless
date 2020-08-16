@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { GiftedChat } from "react-native-gifted-chat";
+import { GiftedChat, Bubble } from "react-native-gifted-chat";
+
+import colors from "../config/colors";
 
 function Chat() {
   const [messages, setMessages] = useState([]);
