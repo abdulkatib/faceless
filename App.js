@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Picker from "./app/components/Picker";
 import Screen from "./app/components/Screen";
-import ChatScreen from "./app/screens/ChatScreen";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
 
 const genders = [
   { sex: "Male", id: 1 },
@@ -11,5 +11,5 @@ const genders = [
 export default function App() {
   const [selectedGender, setSelectedGender] = useState("");
 
-  return <ChatScreen />;
+  return <WelcomeScreen />;
 }
