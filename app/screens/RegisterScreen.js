@@ -8,6 +8,7 @@ import Text from "../components/Text";
 import Button from "../components/Button";
 import ErrorMessage from "../components/forms/ErrorMessage";
 import { Form, FormField, SubmitButton } from "../components/forms";
+import colors from "../config/colors";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -17,7 +18,9 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterScreen() {
+  //TODO ===> if !acceptedTerms DO NOT submit the from//
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+
   const CheckBoxComponent = () => {
     return (
       <View onClick={() => setAcceptedTerms(!acceptedTerms)}>
@@ -39,7 +42,8 @@ function RegisterScreen() {
 
   return (
     <Screen style={styles.container}>
-      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+      <Image style={styles.logo} source={require("../assets/logo.png")} />
+      <Text style={styles.logoTitle}>Faceless</Text>
       <Form
         initialValues={{
           name: "",
@@ -108,7 +112,13 @@ const styles = StyleSheet.create({
     height: 80,
     alignSelf: "center",
     marginTop: 50,
-    marginBottom: 20,
+    marginBottom: 10,
+  },
+  logoTitle: {
+    alignSelf: "center",
+    marginBottom: 30,
+    color: colors.primary,
+    fontSize: 30,
   },
 });
 
