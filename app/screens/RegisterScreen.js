@@ -11,6 +11,7 @@ import { Form, FormField, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
+  username: Yup.string().required().label("Username"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
@@ -28,7 +29,8 @@ function RegisterScreen() {
             style={styles.checkbox}
           />
           <Text>
-            I have read and agree to the Terms{!acceptedTerms ? "👎" : "👍"}
+            I accept the Terms of Faceless
+            {acceptedTerms && "👍"}
           </Text>
         </View>
       </View>
@@ -39,7 +41,13 @@ function RegisterScreen() {
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <Form
-        initialValues={{ name: "", email: "", password: "", terms: "" }}
+        initialValues={{
+          name: "",
+          username: "",
+          email: "",
+          password: "",
+          terms: "",
+        }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
@@ -75,7 +83,7 @@ function RegisterScreen() {
         />
         <CheckBoxComponent name="terms" />
         <ErrorMessage
-          error="You should agree to Faceless terms"
+          error="You should accept Faceless terms 😅"
           visible={!acceptedTerms}
         />
         <SubmitButton title="Register" />
