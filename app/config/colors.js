@@ -1,4 +1,5 @@
 export default {
+  main: "#FAEDDD",
   primary: "#ECB046",
   secondary: "#DF6946",
   black: "#000",

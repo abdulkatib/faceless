@@ -1,29 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import CheckBox from "react-native-check-box";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
 import Text from "../components/Text";
-import Button from "../components/Button";
 import ErrorMessage from "../components/forms/ErrorMessage";
 import { Form, FormField, SubmitButton } from "../components/forms";
 import colors from "../config/colors";
+import FormImagePicker from "../components/forms/FormImagePicker";
+import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
   username: Yup.string().required().label("Username"),
-  email: Yup.string().required().email().label("Email"),
+  email: Yup.string().required().email().label("Email").trim(),
   password: Yup.string().required().min(4).label("Password"),
+  images: Yup.array().min(1, "Please select at least one image."),
 });
 
 function RegisterScreen() {
   //TODO ===> if !acceptedTerms DO NOT submit the from//
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
+  const location = useLocation();
+
   const CheckBoxComponent = () => {
     return (
-      <View onClick={() => setAcceptedTerms(!acceptedTerms)}>
+      <View>
         <View style={styles.checkboxContainer}>
           <CheckBox
             name="terms"
@@ -31,7 +35,7 @@ function RegisterScreen() {
             onClick={() => setAcceptedTerms(!acceptedTerms)}
             style={styles.checkbox}
           />
-          <Text>
+          <Text onPress={() => setAcceptedTerms(!acceptedTerms)}>
             I accept the Terms of Faceless
             {acceptedTerms && "👍"}
           </Text>
@@ -51,8 +55,12 @@ function RegisterScreen() {
           email: "",
           password: "",
           terms: "",
+          images: [],
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {
+          values.terms = acceptedTerms;
+          console.log(values);
+        }}
         validationSchema={validationSchema}
       >
         <FormField
@@ -85,6 +93,7 @@ function RegisterScreen() {
           secureTextEntry
           textContentType="password"
         />
+        <FormImagePicker name="images" />
         <CheckBoxComponent name="terms" />
         <ErrorMessage
           error="You should accept Faceless terms 😅"
@@ -99,6 +108,7 @@ function RegisterScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    // backgroundColor: colors.main,
   },
   checkboxContainer: {
     flexDirection: "row",
@@ -111,7 +121,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     alignSelf: "center",
-    marginTop: 50,
+    marginTop: 40,
     marginBottom: 10,
   },
   logoTitle: {
