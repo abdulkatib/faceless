@@ -1,7 +1,8 @@
 export default {
-  main: "#FAEDDD",
-  primary: "#ECB046",
-  secondary: "#DF6946",
+  main: "#ECE3E2", // light gray
+  darkMain: "#0D1B46", //navy
+  primary: "#F8777D", //Pink
+  secondary: "#65BCBF", // light blue
   black: "#000",
   white: "#fff",
   medium: "#6e6969",
