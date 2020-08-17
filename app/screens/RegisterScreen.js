@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
   email: Yup.string().required().email().label("Email").trim(),
   password: Yup.string().required().min(4).label("Password"),
-  images: Yup.array().min(1, "Please select at least one image."),
+  images: Yup.array().min(1, "Please select at least one image up to six."),
 });
 
 function RegisterScreen() {
@@ -46,7 +46,6 @@ function RegisterScreen() {
 
   return (
     <Screen style={styles.container}>
-      <Image style={styles.logo} source={require("../assets/logo.png")} />
       <Text style={styles.logoTitle}>Faceless</Text>
       <Form
         initialValues={{
@@ -125,10 +124,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logoTitle: {
+    marginTop: 40,
     alignSelf: "center",
-    marginBottom: 30,
+    fontSize: 40,
     color: colors.primary,
-    fontSize: 30,
+    marginBottom: 30,
   },
 });
 
