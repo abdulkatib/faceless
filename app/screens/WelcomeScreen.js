@@ -7,11 +7,12 @@ import colors from "../config/colors";
 
 function WelcomeScreen({ navigation }) {
   return (
-    <ImageBackground
-      blurRadius={10}
-      style={styles.background}
-      source={require("../assets/background.jpg")}
-    >
+    // <ImageBackground
+    //   blurRadius={10}
+    //   style={styles.background}
+    //   source={require("../assets/background.jpg")}
+    // >
+    <View style={styles.background}>
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo.png")} />
         <Text style={styles.tagline}>faceless</Text>
@@ -25,7 +26,8 @@ function WelcomeScreen({ navigation }) {
           onPress={() => navigation.navigate("Register")}
         />
       </View>
-    </ImageBackground>
+      {/* </ImageBackground> */}
+    </View>
   );
 }
 
@@ -34,14 +36,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
+    backgroundColor: colors.main,
   },
   buttonsContainer: {
     padding: 20,
     width: "100%",
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
+    marginTop: 150,
   },
   logoContainer: {
     position: "absolute",
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   tagline: {
-    fontSize: 50,
+    fontSize: 60,
     fontWeight: "600",
     paddingTop: 15,
     color: colors.primary,

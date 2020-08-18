@@ -32,6 +32,15 @@ const AppNavigator = () => (
         ),
       }}
     />
+    <Tab.Screen
+      name="GhostMood"
+      component={ConversationNavigator}
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="ghost" color={color} size={size} />
+        ),
+      }}
+    />
   </Tab.Navigator>
 );
 
