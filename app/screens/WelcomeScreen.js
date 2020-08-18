@@ -5,7 +5,7 @@ import Button from "../components/Button";
 import Text from "../components/Text";
 import colors from "../config/colors";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       blurRadius={10}
@@ -18,8 +18,12 @@ function WelcomeScreen(props) {
         <Text style={styles.slogan}> Say it as you feel it</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <Button title="Login" />
-        <Button title="Register" color="secondary" />
+        <Button title="Login" onPress={() => navigation.navigate("Login")} />
+        <Button
+          title="Register"
+          color="secondary"
+          onPress={() => navigation.navigate("Register")}
+        />
       </View>
     </ImageBackground>
   );

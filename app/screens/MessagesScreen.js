@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  TouchableHighlight,
+} from "react-native";
 
 import Screen from "../components/Screen";
 import {
@@ -7,6 +13,7 @@ import {
   ListItemDeleteAction,
   ListItemSeparator,
 } from "../components/lists";
+import navigationTheme from "../navigation/navigationTheme";
 
 const initialMessages = [
   {
@@ -23,7 +30,7 @@ const initialMessages = [
   },
 ];
 
-function MessagesScreen(props) {
+function MessagesScreen({ navigation }) {
   const [messages, setMessages] = useState(initialMessages);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -42,7 +49,10 @@ function MessagesScreen(props) {
             title={item.title}
             subTitle={item.description}
             image={item.image}
-            onPress={() => console.log("Message selected", item)}
+            onPress={() => {
+              console.log("Message selected", item);
+              navigation.navigate("Chat", item);
+            }}
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}
