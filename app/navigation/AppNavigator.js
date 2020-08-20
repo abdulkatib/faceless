@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AccountNavigator from "./AccountNavigator";
 import ConversationNavigator from "./ConversationNavigator";
 // import FeedNavigator from "./FeedNavigator";
-import MessagesScreen from "../screens/MessagesScreen";
+import ConversationsScreen from "../screens/ConversationsScreen";
 import ChatScreen from "../screens/ChatScreen";
 import NewListingButton from "./NewListingButton";
 import routes from "./routes";
@@ -15,7 +15,7 @@ const Tab = createBottomTabNavigator();
 const AppNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen
-      name="Messages"
+      name="Conversations"
       component={ConversationNavigator}
       options={{
         tabBarIcon: ({ color, size }) => (
@@ -38,7 +38,7 @@ const AppNavigator = () => (
       options={({ navigation }) => ({
         tabBarButton: () => (
           <NewListingButton
-            onPress={() => navigation.navigate(routes.MESSAGES_SCREEN)}
+            onPress={() => navigation.navigate(routes.Conversations_SCREEN)}
           />
         ),
         // tabBarIcon: ({ color, size }) => (

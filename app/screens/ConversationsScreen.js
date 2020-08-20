@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -8,6 +8,8 @@ import {
 } from "react-native";
 
 import Screen from "../components/Screen";
+import Text from "../components/Text";
+import Button from "../components/Button";
 import {
   ListItem,
   ListItemDeleteAction,
@@ -15,9 +17,12 @@ import {
 } from "../components/lists";
 import routes from "../navigation/routes";
 
-import navigationTheme from "../navigation/navigationTheme";
+import useApi from "../hooks/useApi";
 
-const initialMessages = [
+import navigationTheme from "../navigation/navigationTheme";
+import ActivityIndicator from "../components/ActivityIndicator";
+
+const initialConversations = [
   {
     id: 1,
     title: "Abdul Katib",
@@ -32,19 +37,31 @@ const initialMessages = [
   },
 ];
 
-function MessagesScreen({ navigation }) {
-  const [messages, setMessages] = useState(initialMessages);
+function ConversationsScreen({ navigation }) {
+  const [Conversations, setConversations] = useState(initialConversations);
   const [refreshing, setRefreshing] = useState(false);
 
+  // const getListingsApi = useApi(listingsApi.getListings);
+
+  useEffect(() => {
+    // getListingsApi.request();
+  }, []);
   const handleDelete = (message) => {
-    // Delete the message from messages
-    setMessages(messages.filter((m) => m.id !== message.id));
+    // Delete the message from Conversations
+    setConversations(Conversations.filter((m) => m.id !== message.id));
   };
 
   return (
     <Screen>
+      {/* {getListingsApi.error && (
+        <>
+          <Text>Couldn't retrieve the listings.</Text>
+          <Button title="Retry" />
+        </>
+      )} */}
+      {/* <ActivityIndicator visible={true} /> */}
       <FlatList
-        data={messages}
+        data={Conversations} // getListingsApi.data ===> user Conversations gose here ""
         keyExtractor={(message) => message.id.toString()}
         renderItem={({ item }) => (
           <ListItem
@@ -63,8 +80,8 @@ function MessagesScreen({ navigation }) {
         ItemSeparatorComponent={ListItemSeparator}
         refreshing={refreshing}
         onRefresh={() => {
-          setMessages([
-            ...initialMessages,
+          setConversations([
+            ...initialConversations,
             {
               id: 3,
               title: "Mike",
@@ -86,4 +103,4 @@ function MessagesScreen({ navigation }) {
 
 const styles = StyleSheet.create({});
 
-export default MessagesScreen;
+export default ConversationsScreen;

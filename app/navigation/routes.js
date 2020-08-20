@@ -1,8 +1,8 @@
 export default Object.freeze({
-  MESSAGES_SCREEN: "Messages",
+  Conversations_SCREEN: "Conversations",
   CHAT_SCREEN: "Chat",
   LISTING_EDIT: "ListingEdit",
   LOGIN: "Login",
-  MESSAGES: "Messages",
+  Conversations: "Conversations",
   REGISTER: "Register",
 });

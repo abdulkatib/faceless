@@ -14,7 +14,7 @@ const menuItems = [
       name: "content-copy",
       backgroundColor: colors.primary,
     },
-    targetScreen: "Messages",
+    targetScreen: "Conversations",
   },
   {
     title: "Share on facebook",
