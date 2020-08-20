@@ -1,14 +1,28 @@
-import React, { useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  TouchableHighlight,
+} from "react-native";
 
 import Screen from "../components/Screen";
+import Text from "../components/Text";
+import Button from "../components/Button";
 import {
   ListItem,
   ListItemDeleteAction,
   ListItemSeparator,
 } from "../components/lists";
+import routes from "../navigation/routes";
 
-const initialMessages = [
+import useApi from "../hooks/useApi";
+
+import navigationTheme from "../navigation/navigationTheme";
+import ActivityIndicator from "../components/ActivityIndicator";
+
+const initialConversations = [
   {
     id: 1,
     title: "Abdul Katib",
@@ -23,26 +37,41 @@ const initialMessages = [
   },
 ];
 
-function MessagesScreen(props) {
-  const [messages, setMessages] = useState(initialMessages);
+function ConversationsScreen({ navigation }) {
+  const [Conversations, setConversations] = useState(initialConversations);
   const [refreshing, setRefreshing] = useState(false);
 
+  // const getListingsApi = useApi(listingsApi.getListings);
+
+  useEffect(() => {
+    // getListingsApi.request();
+  }, []);
   const handleDelete = (message) => {
-    // Delete the message from messages
-    setMessages(messages.filter((m) => m.id !== message.id));
+    // Delete the message from Conversations
+    setConversations(Conversations.filter((m) => m.id !== message.id));
   };
 
   return (
     <Screen>
+      {/* {getListingsApi.error && (
+        <>
+          <Text>Couldn't retrieve the listings.</Text>
+          <Button title="Retry" />
+        </>
+      )} */}
+      {/* <ActivityIndicator visible={true} /> */}
       <FlatList
-        data={messages}
+        data={Conversations} // getListingsApi.data ===> user Conversations gose here ""
         keyExtractor={(message) => message.id.toString()}
         renderItem={({ item }) => (
           <ListItem
             title={item.title}
             subTitle={item.description}
             image={item.image}
-            onPress={() => console.log("Message selected", item)}
+            onPress={() => {
+              console.log("Message selected", item);
+              navigation.navigate(routes.CHAT_SCREEN, item);
+            }}
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}
@@ -51,8 +80,8 @@ function MessagesScreen(props) {
         ItemSeparatorComponent={ListItemSeparator}
         refreshing={refreshing}
         onRefresh={() => {
-          setMessages([
-            ...initialMessages,
+          setConversations([
+            ...initialConversations,
             {
               id: 3,
               title: "Mike",
@@ -74,4 +103,4 @@ function MessagesScreen(props) {
 
 const styles = StyleSheet.create({});
 
-export default MessagesScreen;
+export default ConversationsScreen;

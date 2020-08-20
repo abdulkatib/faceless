@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import Screen from "./app/components/Screen";
-import RegisterScreen from "./app/screens/RegisterScreen";
-import FromImagePicker from "./app/components/forms/FormImagePicker";
+import { NavigationContainer } from "@react-navigation/native";
+
+import navigationTheme from "./app/navigation/navigationTheme";
+import AuthNavigator from "./app/navigation/AuthNavigation";
+import AppNavigator from "./app/navigation/AppNavigator";
 
 export default function App() {
-  return <RegisterScreen />;
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      {/* <AuthNavigator /> */}
+      <AppNavigator />
+    </NavigationContainer>
+  );
 }
