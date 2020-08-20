@@ -13,6 +13,8 @@ import {
   ListItemDeleteAction,
   ListItemSeparator,
 } from "../components/lists";
+import routes from "../navigation/routes";
+
 import navigationTheme from "../navigation/navigationTheme";
 
 const initialMessages = [
@@ -51,7 +53,7 @@ function MessagesScreen({ navigation }) {
             image={item.image}
             onPress={() => {
               console.log("Message selected", item);
-              navigation.navigate("Chat", item);
+              navigation.navigate(routes.CHAT_SCREEN, item);
             }}
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />

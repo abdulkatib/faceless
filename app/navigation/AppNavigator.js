@@ -7,8 +7,8 @@ import ConversationNavigator from "./ConversationNavigator";
 // import FeedNavigator from "./FeedNavigator";
 import MessagesScreen from "../screens/MessagesScreen";
 import ChatScreen from "../screens/ChatScreen";
-// import NewListingButton from "./NewListingButton";
-// import routes from "./routes";
+import NewListingButton from "./NewListingButton";
+import routes from "./routes";
 
 const Tab = createBottomTabNavigator();
 
@@ -35,11 +35,16 @@ const AppNavigator = () => (
     <Tab.Screen
       name="GhostMood"
       component={ConversationNavigator}
-      options={{
-        tabBarIcon: ({ color, size }) => (
-          <MaterialCommunityIcons name="ghost" color={color} size={size} />
+      options={({ navigation }) => ({
+        tabBarButton: () => (
+          <NewListingButton
+            onPress={() => navigation.navigate(routes.MESSAGES_SCREEN)}
+          />
         ),
-      }}
+        // tabBarIcon: ({ color, size }) => (
+        //   <MaterialCommunityIcons name="ghost" color={color} size={size} />
+        // ),
+      })}
     />
   </Tab.Navigator>
 );

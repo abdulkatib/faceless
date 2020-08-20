@@ -14,6 +14,7 @@ const menuItems = [
       name: "content-copy",
       backgroundColor: colors.primary,
     },
+    targetScreen: "Messages",
   },
   {
     title: "Share on facebook",
@@ -55,6 +56,10 @@ function AccountScreen({ navigation }) {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              onPress={() => {
+                console.log(item);
+                //navigation.navigate(item.targetScreen)
+              }}
             />
           )}
         />

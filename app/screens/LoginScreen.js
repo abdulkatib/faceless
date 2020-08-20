@@ -16,7 +16,7 @@ function LoginScreen(props) {
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
-      <Text style={styles.logoTitle}>Faceless</Text>
+      <Text style={styles.logoTitle}>faceless</Text>
       <Form
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}

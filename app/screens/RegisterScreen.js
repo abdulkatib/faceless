@@ -36,7 +36,7 @@ function RegisterScreen() {
             style={styles.checkbox}
           />
           <Text onPress={() => setAcceptedTerms(!acceptedTerms)}>
-            I accept the Terms of Faceless
+            I accept the Terms of faceless
             {acceptedTerms && "👍"}
           </Text>
         </View>
@@ -46,7 +46,7 @@ function RegisterScreen() {
 
   return (
     <Screen style={styles.container}>
-      <Text style={styles.logoTitle}>Faceless</Text>
+      <Text style={styles.logoTitle}>faceless</Text>
       <Form
         initialValues={{
           name: "",
